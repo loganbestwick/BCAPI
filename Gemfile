@@ -27,4 +27,5 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 group :test, :development do
 	gem 'rspec-rails', '~> 2.0'
 	gem 'shoulda-matchers'
+	gem 'factory_girl_rails'
 end

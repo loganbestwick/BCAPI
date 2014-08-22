@@ -47,3 +47,7 @@ production:
   encoding: unicode
   database: BCAPI_production
   pool: 5
+
+
+# if rails isnt starting:
+# pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
