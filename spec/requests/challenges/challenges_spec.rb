@@ -40,7 +40,23 @@ end
 describe 'DELETE /v1/challenges/:id' do
 	it 'deletes the challenge with :id' do
 		challenge = create(:challenge)
-
 		expect{delete "/v1/challenges/#{challenge.id}"}.to change{Challenge.all.count}.by(-1)
+	end
+end
+
+describe 'PUT /v1/challenges/:id' do
+	it 'updates a challenge' do
+		challenge = create(:challenge)
+
+		put "/v1/challenges/#{challenge.id}", {
+			name: 'Doggies',
+			password: challenge.password,
+			start_date: challenge.start_date,
+			created_at: challenge.created_at,
+			updated_at: challenge.updated_at
+		}, {'Content-Type' => 'application/json'}
+
+		challenge.reload
+		expect(challenge.name).to eq 'Doggies'
 	end
 end
