@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20140816235033) do
   create_table "challenges", :force => true do |t|
     t.string   "name"
     t.string   "password"
-    t.date     "start_date"
+    t.datetime "start_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

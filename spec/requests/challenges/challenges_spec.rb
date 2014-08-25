@@ -11,9 +11,9 @@ describe 'GET /v1/challenges/:id' do
 				'id' => challenge.id,
 				'name' => challenge.name,
 				'password' => challenge.password,
-				'start_date' => challenge.start_date.strftime('%Y-%m-%d'),
-				'created_at' => challenge.created_at.strftime('%Y-%m-%dT%H:%M:%SZ'),
-				'updated_at' => challenge.updated_at.strftime('%Y-%m-%dT%H:%M:%SZ')
+				'start_date' => challenge.start_date.to_i,
+				'created_at' => challenge.created_at.to_i,
+				'updated_at' => challenge.updated_at.to_i
 			}
 		)
 	end
@@ -33,7 +33,7 @@ describe 'POST /v1/challenges' do
 		expect(JSON.parse(response.body)).to eq({'id' => challenge.id})
 		expect(challenge.name).to eq 'Challenge'
 		expect(challenge.password).to eq 'pWordddd'
-		expect(challenge.start_date).to eq date.to_date
+		expect(challenge.start_date.to_i).to eq date.to_i
 	end
 end
 
