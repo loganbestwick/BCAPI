@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(:version => 20140816235033) do
     t.string   "password"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "total_burpees"
-    t.integer  "total_time"
-    t.integer  "num_workouts"
-    t.integer  "best_time"
+    t.integer  "total_burpees",   :default => 0
+    t.integer  "total_time",      :default => 0
+    t.integer  "num_workouts",    :default => 0
+    t.integer  "best_workout_id"
     t.integer  "challenge_id"
-    t.boolean  "notifications?", :default => true
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "notifications",   :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "workouts", :force => true do |t|
