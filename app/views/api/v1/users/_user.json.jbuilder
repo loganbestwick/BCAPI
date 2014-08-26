@@ -7,5 +7,7 @@ json.cache! user do
 	json.total_burpees user.total_burpees
 	json.total_time user.total_time
 	json.num_workouts user.num_workouts
+	json.best_workout_id user.best_workout_id
+	json.challenge_id user.challenge_id
 	json.notifications user.notifications
 end

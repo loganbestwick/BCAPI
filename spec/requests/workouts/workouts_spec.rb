@@ -19,6 +19,34 @@ describe 'GET /v1/workouts/:id' do
 	end
 end
 
+describe 'GET /v1/challenges/:challenge_id/workouts' do
+	it 'returns a list of workouts from challenge :id' do
+		challenge = create(:challenge)
+		20.times {
+			Workout.create(time_start: Time.now, challenge_id: challenge.id, user_id: 1, time_end: Time.now, duration: 4)
+		}
+
+		get "/v1/challenges/#{challenge.id}/workouts"
+
+		expect(JSON.parse(response.body)["workouts"].length).to eq(20)
+		expect(JSON.parse(response.body)["workouts"][0]["challenge_id"]).to eq(challenge.id)
+	end
+end
+
+describe 'GET /v1/users/:user_id/workouts' do
+	it 'returns a list of workouts from user :id' do
+		user = create(:user)
+		20.times {
+			Workout.create(time_start: Time.now, challenge_id: 1, user_id: user.id, time_end: Time.now, duration: 4)
+		}
+
+		get "/v1/users/#{user.id}/workouts"
+
+		expect(JSON.parse(response.body)["workouts"].length).to eq (20)
+		expect(JSON.parse(response.body)["workouts"][0]["user_id"]).to eq(user.id)
+	end
+end
+
 describe 'POST /v1/workouts' do
 	it 'saves a workout' do
 		time1 = Time.now

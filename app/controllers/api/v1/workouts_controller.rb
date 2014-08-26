@@ -11,6 +11,14 @@ class Api::V1::WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:id])
 	end
 
+	def challenge_index
+		@workouts = Workout.where(:challenge_id => params[:challenge_id]).limit(20)
+	end
+
+	def user_index
+		@workouts = Workout.where(:user_id => params[:user_id]).limit(20)
+	end
+
 	private
 
 	def workout_params

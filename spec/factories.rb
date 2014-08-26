@@ -55,6 +55,7 @@ FactoryGirl.define do
 		last_name
 		email
 		password
+		challenge_id
 	end
 
 	factory :workout do

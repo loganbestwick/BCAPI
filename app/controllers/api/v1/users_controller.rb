@@ -11,6 +11,10 @@ class Api::V1::UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def index
+		@users = User.where(:challenge_id => params[:challenge_id])
+	end
+
 	def destroy
 		@user = User.find(params['id'])
 		@user.destroy
@@ -35,7 +39,9 @@ class Api::V1::UsersController < ApplicationController
 			first_name: params[:first_name],
 			last_name: params[:last_name],
 			email: params[:email],
-			password: params[:password]
+			password: params[:password],
+			challenge_id: params[:challenge_id],
+			best_workout_id: params[:best_workout_id]
 		}
 	end
 

@@ -16,9 +16,25 @@ describe 'GET /v1/users/:id' do
 				'total_burpees' => user.total_burpees,
 				'total_time' => user.total_time,
 				'num_workouts' => user.num_workouts,
-				'notifications' => user.notifications
+				'notifications' => user.notifications,
+				'best_workout_id' => user.best_workout_id,
+				'challenge_id' => user.challenge_id
 			}
 		)
+	end
+end
+
+describe 'GET /v1/challenges/:challenge_id/users' do
+	it 'returns a list of users by :challenge_id' do
+		challenge = create(:challenge)
+		5.times {
+			User.create(first_name: 'l', last_name: 'm', email: 'n', password: 'ign', challenge_id: challenge.id, best_workout_id: 32)
+		}
+
+		get "/v1/challenges/#{challenge.id}/users"
+
+		expect(JSON.parse(response.body)["users"].length).to eq(5)
+		expect(JSON.parse(response.body)["users"][0]["challenge_id"]).to eq(challenge.id)
 	end
 end
 
