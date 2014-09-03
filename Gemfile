@@ -30,3 +30,9 @@ group :test, :development do
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 end
+
+group :production do
+	gem 'rails_12factor'
+end
+
+ruby '1.9.3'
